@@ -1,18 +1,6 @@
 version: 2
 updates:
-<<<<<<< HEAD
-  # dependabot for GitHub Actions for this repo
-=======
->>>>>>> 48341da (Generate asdf-tea plugin from template.)
   - package-ecosystem: "github-actions"
     directory: "./github"
     schedule:
       interval: "weekly"
-<<<<<<< HEAD
-  # dependabot for GitHub Actions for the template
-  - package-ecosystem: "github-actions"
-    directory: "template/.github/"
-    schedule:
-      interval: "weekly"
-=======
->>>>>>> 48341da (Generate asdf-tea plugin from template.)
