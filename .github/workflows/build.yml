@@ -7,8 +7,13 @@ on:
   pull_request:
 
 jobs:
+<<<<<<< HEAD
   test:
     name: template setup test
+=======
+  plugin_test:
+    name: asdf plugin test
+>>>>>>> 48341da (Generate asdf-tea plugin from template.)
     strategy:
       matrix:
         os:
@@ -16,6 +21,7 @@ jobs:
           - macos-latest
     runs-on: ${{ matrix.os }}
     steps:
+<<<<<<< HEAD
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run Template Setup
@@ -45,3 +51,9 @@ jobs:
                    --or -e "<TOOL CHECK>" \
                    --or -e "<YOUR NAME>" \
                    --or -e"<YOUR GITHUB USERNAME>"
+=======
+      - name: asdf_plugin_test
+        uses: asdf-vm/actions/plugin-test@v2
+        with:
+          command: tea --version
+>>>>>>> 48341da (Generate asdf-tea plugin from template.)
