@@ -2,8 +2,7 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for tea.
-GH_REPO="https://github.com/mvaldes14/tea"
+GH_REPO="https://gitea.com/gitea/tea/releases"
 TOOL_NAME="tea"
 TOOL_TEST="tea --version"
 
@@ -13,11 +12,6 @@ fail() {
 }
 
 curl_opts=(-fsSL)
-
-# NOTE: You might want to remove this if tea is not hosted on GitHub releases.
-if [ -n "${GITHUB_API_TOKEN:-}" ]; then
-	curl_opts=("${curl_opts[@]}" -H "Authorization: token $GITHUB_API_TOKEN")
-fi
 
 sort_versions() {
 	sed 'h; s/[+-]/./g; s/.p\([[:digit:]]\)/.z\1/; s/$/.z/; G; s/\n/ /' |
