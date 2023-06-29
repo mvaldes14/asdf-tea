@@ -22,9 +22,9 @@ get_arch() {
 
 form_url() {
 	local version="$1"
-	local os=get_os
-	local arch=get_arch
-	if [ $arch == 'none' ]; then
+	local os=$(get_os)
+	local arch=$(get_arch)
+	if [ $arch == "none" ]; then
 		echo "Architecture not supported by Tea" && exit 1
 	fi
 	echo "https://gitea.com/gitea/tea/releases/download/v${version}/tea-${version}-${os}-${arch}"
