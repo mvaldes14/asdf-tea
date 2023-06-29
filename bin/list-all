@@ -2,10 +2,8 @@
 
 set -euo pipefail
 
-current_script_path=${BASH_SOURCE[0]}
-plugin_dir=$(dirname "$(dirname "$current_script_path")")
+list_all_versions() {
+	git ls-remote --tags --refs https://gitea.com/gitea/tea.git | grep -o 'refs/tags/.*' | cut -d/ -f3- | sed 's/^v//' | sort
+}
 
-# shellcheck source=../lib/utils.bash
-source "${plugin_dir}/lib/utils.bash"
-
-list_all_versions | sort_versions | xargs echo
+list_all_versions
