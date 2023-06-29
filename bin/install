@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
-ASDF_INSTALL_TYPE=${ASDF_INSTALL_TYPE:-version  }
-[ -n "$ASDF_INSTALL_VERSION" ] || (echo >&2 'Missing ASDF_INSTALL_VERSION' && exit 1)
-[ -n "$ASDF_INSTALL_PATH" ] || (echo >&2 'Missing ASDF_INSTALL_PATH' && exit 1)
+# set -euo pipefail
 
 get_os() {
 	uname | tr '[:upper:]' '[:lower:]'
@@ -19,7 +15,7 @@ get_arch() {
 	'darwin') local cpu_type="darwin" ;;
 	'arm7l') local cpu_type="arm" ;;
 	'aarch64') local cpu_type="arm64" ;;
-	*) local cpu_type="n/a" ;;
+	*) local cpu_type="none" ;;
 	esac
 	echo "$cpu_type"
 }
@@ -28,13 +24,14 @@ form_url() {
 	local version="$1"
 	local os=get_os
 	local arch=get_arch
-	if $arch -eq 'n/a'; then
+	if $arch -eq 'none'; then
 		echo "Architecture not supported by Tea" && exit 1
 	fi
 	echo "https://gitea.com/gitea/tea/releases/download/v${version}/tea-${version}-${os}-${arch}"
 }
 
 install_version() {
+	local install_type=$1
 	local version=$2
 	local install_path=$3
 	local bin_install_path="$install_path/bin"

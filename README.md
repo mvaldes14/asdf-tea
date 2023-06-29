@@ -6,20 +6,6 @@
 
 </div>
 
-# Contents
-
-- [Dependencies](#dependencies)
-- [Install](#install)
-- [Contributing](#contributing)
-- [License](#license)
-
-# Dependencies
-
-**TODO: adapt this section**
-
-- `bash`, `curl`, `tar`: generic POSIX utilities.
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
-
 # Install
 
 Plugin:
@@ -37,7 +23,7 @@ tea:
 asdf list-all tea
 
 # Install specific version
-asdf install tea latest
+asdf install tea 0.9.2
 
 # Set a version globally (on your ~/.tool-versions file)
 asdf global tea latest
@@ -45,9 +31,6 @@ asdf global tea latest
 # Now tea commands are available
 tea --version
 ```
-
-Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
-install & manage versions.
 
 # Contributing
 
