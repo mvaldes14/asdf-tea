@@ -30,10 +30,14 @@ form_url() {
 	echo "https://gitea.com/gitea/tea/releases/download/v${version}/tea-${version}-${os}-${arch}"
 }
 
-install_version() {
+install_tea() {
 	local install_type=$1
 	local version=$2
 	local install_path=$3
+
+
+	echo $install_type $install_path
+
 	local bin_install_path="$install_path/bin"
 	local download_url
 	download_url="$(form_url "$version")"
@@ -48,6 +52,4 @@ install_version() {
 
 }
 
-echo $1 $2 $3
-
-install_version "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
+install_tea "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
