@@ -45,6 +45,9 @@ install_version() {
 	if curl -L -sf "$download_url" -o "$bin_path"; then
 		chmod +x "$bin_path"
 	fi
+
 }
+
+echo $1 $2 $3
 
 install_version "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
