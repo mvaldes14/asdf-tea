@@ -1,18 +1,31 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-current_script_path=${BASH_SOURCE[0]}
-plugin_dir=$(dirname "$(dirname "$current_script_path")")
 
-# shellcheck source=../lib/utils.bash
-source "${plugin_dir}/lib/utils.bash"
+get_os() {
+	uname | tr '[:upper:]' '[:lower:]'
+}
 
+get_arch() {
+	local arch
+	arch="$(uname -m)"
+	case "$arch" in
+	"x86_64") local cpu_type="amd64" ;;
+	"windows") local cpu_type="windows" ;;
+	"darwin") local cpu_type="darwin" ;;
+	"arm7l") local cpu_type="arm" ;;
+	"aarch64") local cpu_type="arm64" ;;
+	*) local cpu_type="none" ;;
+	esac
+	echo "$cpu_type"
+}
 
 form_url() {
 	local version="$1"
-	local os=$(get_os)
-	local arch=$(get_arch)
-	if [ $arch == "none" ]; then
+	local os arch
+	os=$(get_os)
+	arch=$(get_arch)
+	if [ "$arch" == "none" ]; then
 		echo "Architecture not supported by Tea" && exit 1
 	fi
 	echo "https://gitea.com/gitea/tea/releases/download/v${version}/tea-${version}-${os}-${arch}"
@@ -29,7 +42,7 @@ install_tea() {
 
 	local bin_path="${bin_install_path}/tea"
 	echo "Downloading tea from ${download_url}"
-	if curl -fsSL  "$download_url" -o "$bin_path"; then
+	if curl -fsSL "$download_url" -o "$bin_path"; then
 		chmod +x "$bin_path"
 	else
 		echo "Selected version has no binary available"
