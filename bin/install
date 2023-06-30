@@ -37,10 +37,11 @@ install_tea() {
 	local download_url
 	download_url="$(form_url "$version")"
 
-	mkdir -p "${bin_install_path}/tea"
+	mkdir -p "${bin_install_path}/bin"
 
-	local bin_path="${bin_install_path}/bin/"
-	echo "Downloading tea from ${download_url}"
+	local bin_path="${bin_install_path}/bin/tea"
+	# echo "Downloading tea from ${download_url} - ${bin_path}"
+	echo "Downloading tea from ${bin_path}"
 	if curl -L -sf "$download_url" -o "$bin_path"; then
 		chmod +x "$bin_path"
 	fi
