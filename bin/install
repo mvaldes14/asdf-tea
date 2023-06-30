@@ -21,18 +21,16 @@ form_url() {
 install_tea() {
 	local version=$2
 	local install_path=$3
-	local bin_install_path="$install_path"
+	local bin_install_path="$install_path/bin"
 	local download_url
 	download_url="$(form_url "$version")"
 
 	mkdir -p "${bin_install_path}"
 
-	local bin_path="${bin_install_path}/bin/tea"
+	local bin_path="${bin_install_path}/tea"
 	echo "Downloading tea from ${download_url} into ${bin_path}"
 	if curl -L -sf "$download_url" -o "$bin_path"; then
-		mv ${bin_path}/tea-${version}-${get_os}-${get_arch} ${bin_path}/tea
-		chmod +x "$bin_path/tea"
-		ls -lr $bin_path
+		chmod +x "$bin_path"
 	fi
 }
 
