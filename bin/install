@@ -33,6 +33,7 @@ install_tea() {
 		chmod +x "$bin_path"
 	else
 		echo "Selected version has no binary available"
+		rmdir "${bin_install_path}"
 	fi
 }
 
