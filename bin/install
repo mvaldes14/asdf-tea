@@ -29,7 +29,7 @@ install_tea() {
 
 	local bin_path="${bin_install_path}"
 	echo "Downloading tea from ${download_url} into ${bin_path}"
-	if curl -L -sf "$download_url" -o "$bin_path"; then
+	if curl -L -f "$download_url" -o "$bin_path"; then
 		chmod +x "$bin_path"
 	fi
 }
