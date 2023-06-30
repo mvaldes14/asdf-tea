@@ -29,9 +29,8 @@ install_tea() {
 
 	local bin_path="${bin_install_path}/tea"
 	echo "Downloading tea from ${download_url}"
-	if curl -L -f "$download_url" -o "$bin_path"; then
-		chmod +x "$bin_path"
-	fi
+	curl -Lf  "$download_url" -o "$bin_path"
+	chmod +x "$bin_path"
 }
 
 install_tea "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
