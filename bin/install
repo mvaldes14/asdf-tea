@@ -31,6 +31,8 @@ install_tea() {
 	echo "Downloading tea from ${download_url}"
 	if curl -fsSL  "$download_url" -o "$bin_path"; then
 		chmod +x "$bin_path"
+	else
+		echo "Selected version has no binary available"
 	fi
 }
 
